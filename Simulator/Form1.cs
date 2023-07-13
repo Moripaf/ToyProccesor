@@ -19,7 +19,7 @@ namespace ToySimulator
             }
             catch (FileNotFoundException)
             {
-                File.WriteAllBytes(@"memory.txt",new byte[65536]);
+                File.WriteAllBytes(@"memory.txt",new byte[8192]);
                 file = new FileInfo(@"memory.txt");
             }
 

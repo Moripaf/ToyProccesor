@@ -77,7 +77,7 @@
             this.codeBox.Location = new System.Drawing.Point(0, 0);
             this.codeBox.Margin = new System.Windows.Forms.Padding(5);
             this.codeBox.Name = "codeBox";
-            this.codeBox.Size = new System.Drawing.Size(414, 717);
+            this.codeBox.Size = new System.Drawing.Size(424, 717);
             this.codeBox.TabIndex = 2;
             this.codeBox.Text = "";
             // 
@@ -118,8 +118,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.codeBox);
-            this.splitContainer1.Size = new System.Drawing.Size(1086, 717);
-            this.splitContainer1.SplitterDistance = 668;
+            this.splitContainer1.Size = new System.Drawing.Size(1111, 717);
+            this.splitContainer1.SplitterDistance = 683;
             this.splitContainer1.TabIndex = 6;
             // 
             // splitContainer2
@@ -132,7 +132,7 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(668, 717);
+            this.splitContainer2.Size = new System.Drawing.Size(683, 717);
             this.splitContainer2.SplitterDistance = 194;
             this.splitContainer2.TabIndex = 8;
             // 
@@ -155,8 +155,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.runBtn);
-            this.splitContainer3.Size = new System.Drawing.Size(668, 194);
-            this.splitContainer3.SplitterDistance = 334;
+            this.splitContainer3.Size = new System.Drawing.Size(683, 194);
+            this.splitContainer3.SplitterDistance = 341;
             this.splitContainer3.TabIndex = 8;
             // 
             // label4
@@ -189,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 717);
+            this.ClientSize = new System.Drawing.Size(1111, 717);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainForm";
             this.Text = "Simulator";
