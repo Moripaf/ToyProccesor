@@ -31,10 +31,11 @@
 *.out
 *.app
 
-# Compile Directories
-Assembler\x64\
-Simulator\bin
-Simulator\obj
+# Directories
 /.vs
+Assembler/x64
+Assembler/x86
+Simulator/bin
+Simulator/obj
 /Simulator/.vs/Simulator
 /Simulator/obj
