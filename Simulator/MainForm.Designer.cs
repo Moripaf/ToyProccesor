@@ -44,7 +44,6 @@
             this.MemBlockBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.monitorBtn = new System.Windows.Forms.Button();
             this.lineBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -53,6 +52,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.zBox = new System.Windows.Forms.TextBox();
             this.cBox = new System.Windows.Forms.TextBox();
+            this.importBtn = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -222,23 +225,26 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.86592F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.13408F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.36871F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.63129F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.monitorBtn, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.button2, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.runBtn, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lineBtn, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.MemBlockBox, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.zBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.zBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.importBtn, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -276,16 +282,6 @@
             this.label6.Size = new System.Drawing.Size(103, 29);
             this.label6.TabIndex = 8;
             this.label6.Text = "Actions :";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(334, 48);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 37);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Run BreakPoint";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // monitorBtn
             // 
@@ -335,7 +331,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label7.Location = new System.Drawing.Point(3, 44);
+            this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 22);
             this.label7.TabIndex = 10;
@@ -345,7 +341,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label8.Location = new System.Drawing.Point(3, 89);
+            this.label8.Location = new System.Drawing.Point(3, 44);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 22);
             this.label8.TabIndex = 11;
@@ -353,7 +349,7 @@
             // 
             // zBox
             // 
-            this.zBox.Location = new System.Drawing.Point(103, 47);
+            this.zBox.Location = new System.Drawing.Point(86, 3);
             this.zBox.Name = "zBox";
             this.zBox.ReadOnly = true;
             this.zBox.Size = new System.Drawing.Size(44, 28);
@@ -361,11 +357,56 @@
             // 
             // cBox
             // 
-            this.cBox.Location = new System.Drawing.Point(103, 92);
+            this.cBox.Location = new System.Drawing.Point(86, 47);
             this.cBox.Name = "cBox";
             this.cBox.ReadOnly = true;
             this.cBox.Size = new System.Drawing.Size(44, 28);
             this.cBox.TabIndex = 13;
+            // 
+            // importBtn
+            // 
+            this.importBtn.Location = new System.Drawing.Point(182, 48);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(103, 37);
+            this.importBtn.TabIndex = 14;
+            this.importBtn.Text = "Import File";
+            this.importBtn.UseVisualStyleBackColor = true;
+            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label9.Location = new System.Drawing.Point(3, 89);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 66);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Show Memory Type :";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "HEX",
+            "BINARY",
+            "DECIMAL"});
+            this.comboBox1.Location = new System.Drawing.Point(86, 92);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(90, 30);
+            this.comboBox1.TabIndex = 16;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(334, 48);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 37);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Save to File";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -421,12 +462,15 @@
         private System.Windows.Forms.DataGridView MemGridView;
         private System.Windows.Forms.TextBox MemBlockBox;
         private System.Windows.Forms.Button lineBtn;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox zBox;
         private System.Windows.Forms.TextBox cBox;
+        private System.Windows.Forms.Button importBtn;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -10,6 +10,8 @@ namespace ToySimulator
     public partial class MainForm : Form
     {
         int c = 0, z = 0;
+        int org = 0;
+        int dotData = 0;
         public int pc {  get; set; }
         const int blockSize = 512;// 32 lins
         const int lineSize = 16; // 8 cells
@@ -42,32 +44,86 @@ namespace ToySimulator
             }
             regA.Text = "0";
             regT.Text = "0";
+            zBox.Text = "0";
+            cBox.Text = "0";
+
             MemLoad();
 
         }
         public void UpdateMemView()
         {
-            var data = from arr in blockArr
-                       select new
-                       {
-                           Address = "0x" + arr[0].ToString("X"),
-                           Value_0 = arr[1],
-                           adr1 = "0x" + (arr[0] + 1).ToString("X"),
-                           Value_1 = arr[2],
-                           adr2 = "0x" + (arr[0] + 2).ToString("X"),
-                           Value_2 = arr[3],
-                           adr3 = "0x" + (arr[0] + 3).ToString("X"),
-                           Value_3 = arr[4],
-                           adr4 = "0x" + (arr[0] + 4).ToString("X"),
-                           Value_4 = arr[5],
-                           adr5 = "0x" + (arr[0] + 5).ToString("X"),
-                           Value_5 = arr[6],
-                           adr6 = "0x" + (arr[0] + 6).ToString("X"),
-                           Value_6 = arr[7],
-                           adr7 = "0x" + (arr[0] + 7).ToString("X"),
-                           Value_7 = arr[8]
-                       };
-            MemGridView.DataSource = data.ToList();
+            switch(comboBox1.SelectedIndex)
+            {
+                case 0:
+                    var hdata = from arr in blockArr
+                               select new
+                               {
+                                   Address = "0x" + arr[0].ToString("X"),
+                                   Value_0 = "0x" + arr[1].ToString("X"),
+                                   adr1 = "0x" + (arr[0] + 1).ToString("X"),
+                                   Value_1 = "0x" + arr[2].ToString("X"),
+                                   adr2 = "0x" + (arr[0] + 2).ToString("X"),
+                                   Value_2 = "0x" + arr[3].ToString("X"),
+                                   adr3 = "0x" + (arr[0] + 3).ToString("X"),
+                                   Value_3 = "0x" + arr[4].ToString("X"),
+                                   adr4 = "0x" + (arr[0] + 4).ToString("X"),
+                                   Value_4 = "0x" + arr[5].ToString("X"),
+                                   adr5 = "0x" + (arr[0] + 5).ToString("X"),
+                                   Value_5 = "0x" + arr[6].ToString("X"),
+                                   adr6 = "0x" + (arr[0] + 6).ToString("X"),
+                                   Value_6 = "0x" + arr[7].ToString("X"),
+                                   adr7 = "0x" + (arr[0] + 7).ToString("X"),
+                                   Value_7 = "0x" + arr[8].ToString("X")
+                               };
+                     MemGridView.DataSource = hdata.ToList();
+                    break;
+                case 1:
+                    var bdata = from arr in blockArr
+                               select new
+                               {
+                                   Address = "0b" + arr[0].ToString("2"),
+                                   Value_0 = "0b" + arr[1],
+                                   adr1 = "0b" + (arr[0] + 1).ToString("2"),
+                                   Value_1 = "0b" + arr[2],
+                                   adr2 = "0b" + (arr[0] + 2).ToString("2"),
+                                   Value_2 = "0b" + arr[3],
+                                   adr3 = "0b" + (arr[0] + 3).ToString("2"),
+                                   Value_3 = "0b" + arr[4],
+                                   adr4 = "0b" + (arr[0] + 4).ToString("X"),
+                                   Value_4 = "0b" + arr[5],
+                                   adr5 = "0b" + (arr[0] + 5).ToString("X"),
+                                   Value_5 = "0b" + arr[6],
+                                   adr6 = "0b" + (arr[0] + 6).ToString("X"),
+                                   Value_6 = "0b" + arr[7],
+                                   adr7 = "0b" + (arr[0] + 7).ToString("X"),
+                                   Value_7 = "0b" + arr[8]
+                               };
+                    MemGridView.DataSource = bdata.ToList();
+                    break;
+                case 2:
+                    var ddata = from arr in blockArr
+                                select new
+                                {
+                                    Address =  arr[0],
+                                    Value_0 = arr[1],
+                                    adr1 = (arr[0] + 1),
+                                    Value_1 = arr[2],
+                                    adr2 = (arr[0] + 2),
+                                    Value_2 = arr[3],
+                                    adr3 = (arr[0] + 3),
+                                    Value_3 = arr[4],
+                                    adr4 = (arr[0] + 4),
+                                    Value_4 = arr[5],
+                                    adr5 = (arr[0] + 5),
+                                    Value_5 = arr[6],
+                                    adr6 = (arr[0] + 6),
+                                    Value_6 = arr[7],
+                                    adr7 = (arr[0] + 7),
+                                    Value_7 = arr[8]
+                                };
+                    MemGridView.DataSource = ddata.ToList();
+                    break;
+            }
         }
         public short MemRead(int addr)
         {
@@ -152,6 +208,12 @@ namespace ToySimulator
         }
         public void ParseLine(string line)
         {
+            if (line == null)
+                return;
+            if (line[0] == '*')
+            {
+                //TODO - breakpoint
+            }
             string cmd = "", addr="";
             int i;
             for (i = 0; (i < line.Length) && (line[i] != ' '); i++)
@@ -242,6 +304,21 @@ namespace ToySimulator
                 case "sta":
                     MemWrite(src, a);
                     break;
+                case ".ORG":
+                case ".org":
+                    org = src;
+                    break;
+                case ".DATA":
+                case ".data":
+                    MemWrite(org, src);
+                    dotData = org;
+                    org++;
+                    //TODO - Complete .Data
+                    break;
+
+                default:
+                    //TODO - handle labels
+                    break;
             }
             
         }
@@ -249,6 +326,31 @@ namespace ToySimulator
         private void button2_Click(object sender, EventArgs e)
         {
             pc = int.Parse(PC.Text);
+        }
+
+        private void importBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    codeBox.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.PlainText);
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateMemView();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
         public int RotateRight(int value, int count)
