@@ -13,7 +13,7 @@ namespace ToySimulator
         int c = 0, z = 0;
         int org = 0;
         bool isBreakPoint = false;
-        public int pc {  get; set; }
+        public short pc {  get; set; }
         const int blockSize = 512;// 32 lins
         const int lineSize = 16; // 8 cells
         const int cellSize = 2; // 2 bytes
@@ -21,6 +21,7 @@ namespace ToySimulator
         short blockAddr;
         short[][] blockArr = new short[32][];
         IDictionary<char, int> D = new Dictionary<char, int>();
+        IDictionary<string, short> Labels = new Dictionary<string, short>();
         readonly FileStream fs;
         FileInfo file;
         public MainForm()
@@ -83,22 +84,22 @@ namespace ToySimulator
                     var bdata = from arr in blockArr
                                select new
                                {
-                                   Address = "0b" + arr[0].ToString("2"),
-                                   Value_0 = "0b" + arr[1],
-                                   adr1 = "0b" + (arr[0] + 1).ToString("2"),
-                                   Value_1 = "0b" + arr[2],
-                                   adr2 = "0b" + (arr[0] + 2).ToString("2"),
-                                   Value_2 = "0b" + arr[3],
-                                   adr3 = "0b" + (arr[0] + 3).ToString("2"),
-                                   Value_3 = "0b" + arr[4],
-                                   adr4 = "0b" + (arr[0] + 4).ToString("X"),
-                                   Value_4 = "0b" + arr[5],
-                                   adr5 = "0b" + (arr[0] + 5).ToString("X"),
-                                   Value_5 = "0b" + arr[6],
-                                   adr6 = "0b" + (arr[0] + 6).ToString("X"),
-                                   Value_6 = "0b" + arr[7],
-                                   adr7 = "0b" + (arr[0] + 7).ToString("X"),
-                                   Value_7 = "0b" + arr[8]
+                                   Address = Convert.ToString(arr[0], 2),
+                                   Value_0 = Convert.ToString(arr[1], 2),
+                                   adr1 = Convert.ToString(arr[0] + 1, 2),
+                                   Value_1 = Convert.ToString(arr[2], 2),
+                                   adr2 = Convert.ToString(arr[0] + 2, 2),
+                                   Value_2 = Convert.ToString(arr[3], 2),
+                                   adr3 = Convert.ToString(arr[0] + 3, 2),
+                                   Value_3 = Convert.ToString(arr[4], 2),
+                                   adr4 = Convert.ToString(arr[0] + 4, 2),
+                                   Value_4 = Convert.ToString(arr[5], 2),
+                                   adr5 = Convert.ToString(arr[0] + 5, 2),
+                                   Value_5 = Convert.ToString(arr[6], 2),
+                                   adr6 = Convert.ToString(arr[0] + 6, 2),
+                                   Value_6 = Convert.ToString(arr[7], 2),
+                                   adr7 = Convert.ToString(arr[0] + 7, 2),
+                                   Value_7 = Convert.ToString(arr[8], 2)
                                };
                     MemGridView.DataSource = bdata.ToList();
                     break;
@@ -198,7 +199,6 @@ namespace ToySimulator
         }
         private void runLine(string line)
         {
-           
             pc++;
             ParseLine(line);
             PC.Text = pc.ToString();
@@ -256,20 +256,25 @@ namespace ToySimulator
         public void Execute(string cmd,string addr)
         {
             short src=0;
-            
+            addr = (addr != "") ? addr : "0";
             if (!char.IsLetter(addr[0]))
-            {
-                addr = (addr != "") ? addr : "0";
+            {              
                 src = short.Parse(addr);
+            }
+            else if(Labels.ContainsKey(addr))
+            {
+                src = Labels[addr];
             }
             else if (D.ContainsKey(addr[0]))
             {
                 addr = D[addr[0]].ToString();
                 src = short.Parse(addr);
             }
-
+            
+            
             short a = short.Parse(regA.Text);
             short t = short.Parse(regT.Text);
+            short b = MemRead(src);
             switch (cmd)
             {
                 case "JMP":
@@ -279,18 +284,21 @@ namespace ToySimulator
                     break;
                 case "ADC":
                 case "adc":
-                    regA.Text = (a + MemRead(src)).ToString();
-                    if (a + src > 32768) { c = 1;cBox.Text = "1"; }
+                    regA.Text = (a + b).ToString();
+                    GenerateCarry(a,b);
+
                     if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "XOR":
                 case "xor":
-                    regA.Text = (a ^ MemRead(src)).ToString();
+                    regA.Text = (a ^ b).ToString();
                     if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "SBC":
                 case "sbc":
-                    regA.Text = (a - MemRead(src) - c).ToString();
+                    b = (short)((short) ~b + 1);
+                    regA.Text = (a + b).ToString();
+                    GenerateCarry(a, b);
                     if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "ROR":
@@ -303,27 +311,27 @@ namespace ToySimulator
                     break;
                 case "OR":
                 case "or":
-                    regA.Text = (a | MemRead(src)).ToString();
+                    regA.Text = (a | b).ToString();
                     if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "AND":
                 case "and":
-                    regA.Text = (a & MemRead(src)).ToString();
+                    regA.Text = (a & b).ToString();
                     if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "LDC":
                 case "ldc":
-                    regA.Text = MemRead(src).ToString();
+                    regA.Text = b.ToString();
                     c = 0;
                     cBox.Text = "0";
                     break;
                 case "BCC":
                 case "bcc":
-                    if (c == 0) { pc = MemRead(src); PC.Text = pc.ToString(); }
+                    if (c == 0) { pc = b; PC.Text = pc.ToString(); }
                         break;
                 case "BNE":
                 case "bne":
-                    if (z == 1) {pc = MemRead(src); PC.Text = pc.ToString();
+                    if (z == 1) {pc = b; PC.Text = pc.ToString();
             }
             break;
                 case "LDI":
@@ -336,7 +344,7 @@ namespace ToySimulator
                     break;
                 case "LDA":
                 case "lda":
-                    regA.Text = MemRead(src).ToString();
+                    regA.Text = b.ToString();
                     break;
                 case "STA":
                 case "sta":
@@ -354,10 +362,27 @@ namespace ToySimulator
                     break;
 
                 default:
-                    //TODO - handle labels
+                    if (Labels.ContainsKey(cmd))
+                        break;
+                    Labels.Add(new KeyValuePair<string, short>(cmd, pc));
                     break;
             }
             
+        }
+        private void GenerateCarry(short a,short b)
+        {
+            try
+            {
+                checked
+                {
+                    var tmp = a + b;
+                }
+            }
+            catch (OverflowException e)
+            {
+                c = 1;
+                cBox.Text = "1";
+            }
         }
         private void ParseDirective(string directive)
         {
@@ -375,7 +400,7 @@ namespace ToySimulator
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            pc = int.Parse(PC.Text);
+            pc = short.Parse(PC.Text);
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -405,6 +430,8 @@ namespace ToySimulator
 
         public int RotateRight(int value, int count)
         {
+            c = value % 2;
+            cBox.Text = c.ToString();
             return (value >> count) | (value << (16 - count));
         }
 
