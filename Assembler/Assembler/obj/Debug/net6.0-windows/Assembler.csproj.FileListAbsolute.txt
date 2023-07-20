@@ -1,0 +1,15 @@
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.csproj.AssemblyReference.cache
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.AssemblyInfoInputs.cache
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.AssemblyInfo.cs
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.csproj.CoreCompileInputs.cache
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\bin\Debug\net6.0-windows\Assembler.exe
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\bin\Debug\net6.0-windows\Assembler.deps.json
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\bin\Debug\net6.0-windows\Assembler.runtimeconfig.json
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\bin\Debug\net6.0-windows\Assembler.dll
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\bin\Debug\net6.0-windows\Assembler.pdb
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.dll
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\refint\Assembler.dll
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.pdb
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\Assembler.genruntimeconfig.cache
+C:\Users\Moripaf\source\repos\ToyProccesor\Assembler\Assembler\obj\Debug\net6.0-windows\ref\Assembler.dll

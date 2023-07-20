@@ -1,3 +1,0 @@
-﻿  Assembler.cpp
-C:\Users\Moripaf\source\repos\Assembler\Assembler.cpp(45): warning C4715: 'turnCommand': not all control paths return a value
-  Assembler.vcxproj -> C:\Users\Moripaf\source\repos\Assembler\x64\Debug\Assembler.exe
