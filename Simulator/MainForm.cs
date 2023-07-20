@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Collections.Generic;
 
 namespace ToySimulator
 {
@@ -11,7 +12,7 @@ namespace ToySimulator
     {
         int c = 0, z = 0;
         int org = 0;
-        int dotData = 0;
+        bool isBreakPoint = false;
         public int pc {  get; set; }
         const int blockSize = 512;// 32 lins
         const int lineSize = 16; // 8 cells
@@ -19,7 +20,7 @@ namespace ToySimulator
 
         short blockAddr;
         short[][] blockArr = new short[32][];
-
+        IDictionary<char, int> D = new Dictionary<char, int>();
         readonly FileStream fs;
         FileInfo file;
         public MainForm()
@@ -46,7 +47,8 @@ namespace ToySimulator
             regT.Text = "0";
             zBox.Text = "0";
             cBox.Text = "0";
-
+            pc = 0;
+            PC.Text = "0";
             MemLoad();
 
         }
@@ -175,26 +177,49 @@ namespace ToySimulator
         }
         private void monitorBtn_Click(object sender, EventArgs e)
         {
-            short tmp = short.Parse(MemBlockBox.Text);
-            if (tmp > 128 || tmp < 0)
+            short tmp;
+            try
             {
-                MemBlockBox.Text = "Enter number between 0-16!";
-                return;
-            }
+                tmp = short.Parse(MemBlockBox.Text);
+                if (tmp > 16 || tmp < 0)
+                {
+                    MemBlockBox.Text = "between 0-16!";
+                    return;
+                }
 
-            blockAddr = tmp;
-            MemLoad();
+                blockAddr = tmp;
+                MemLoad();
+            }
+            catch (FormatException ex)
+            {
+                MemBlockBox.Text = "Must be Number!";
+            }
+                        
+        }
+        private void runLine(string line)
+        {
+           
+            pc++;
+            ParseLine(line);
+            PC.Text = pc.ToString();
         }
         private void runBtn_Click(object sender, EventArgs e)
         {
-            pc = 0;
             while (pc < codeBox.Lines.Length)
             {
-                pc++;
-                ParseLine(codeBox.Lines[pc-1]);
-               
+                if (codeBox.Lines[pc] != "")
+                {
+                    if ((codeBox.Lines[pc][0] == '*') && (!isBreakPoint))
+                    {
+                        isBreakPoint = true;
+                        break;
+                    }
+                    else
+                        isBreakPoint = false;
+                    runLine(codeBox.Lines[pc]);
+                }
             }
-            PC.Text = pc.ToString();
+             
         }
         private void lineBtn_Click(object sender, EventArgs e)
         {
@@ -202,23 +227,25 @@ namespace ToySimulator
             {
                 return;
             }
-            pc++;
-            ParseLine(codeBox.Lines[pc-1]);
-            PC.Text = pc.ToString();
+            runLine(codeBox.Lines[pc]);
         }
         public void ParseLine(string line)
         {
+            int i;
+            string cmd = "", addr = "";
             if (line == null)
                 return;
             if (line[0] == '*')
             {
-                //TODO - breakpoint
+                for (i = 1; (i < line.Length) && (line[i] != ' '); i++)
+                    cmd += line[i];
             }
-            string cmd = "", addr="";
-            int i;
-            for (i = 0; (i < line.Length) && (line[i] != ' '); i++)
-                cmd += line[i];
-            for(i++;i<line.Length;i++)
+            else
+            {
+                for (i = 0; (i < line.Length) && (line[i] != ' '); i++)
+                    cmd += line[i];
+            }          
+            for (i++;i<line.Length;i++)
                 addr += line[i];
             Execute(cmd, addr);
 
@@ -228,8 +255,19 @@ namespace ToySimulator
 
         public void Execute(string cmd,string addr)
         {
-            addr = (addr != "") ? addr : "0";
-            short src = short.Parse(addr);
+            short src=0;
+            
+            if (!char.IsLetter(addr[0]))
+            {
+                addr = (addr != "") ? addr : "0";
+                src = short.Parse(addr);
+            }
+            else if (D.ContainsKey(addr[0]))
+            {
+                addr = D[addr[0]].ToString();
+                src = short.Parse(addr);
+            }
+
             short a = short.Parse(regA.Text);
             short t = short.Parse(regT.Text);
             switch (cmd)
@@ -307,13 +345,12 @@ namespace ToySimulator
                 case ".ORG":
                 case ".org":
                     org = src;
+                    orgBox.Text = org.ToString();
+
                     break;
                 case ".DATA":
                 case ".data":
-                    MemWrite(org, src);
-                    dotData = org;
-                    org++;
-                    //TODO - Complete .Data
+                    ParseDirective(addr);
                     break;
 
                 default:
@@ -322,7 +359,20 @@ namespace ToySimulator
             }
             
         }
-
+        private void ParseDirective(string directive)
+        {
+            string v = "";
+           for(int i = 2; i < directive.Length; i++)
+            {
+                v+= directive[i];
+            }
+            
+           D.Add(new KeyValuePair<char, int>(directive[0], org));         
+            if (v != "") 
+                MemWrite(org,short.Parse(v));
+            org++;
+            orgBox.Text = org.ToString();
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             pc = int.Parse(PC.Text);

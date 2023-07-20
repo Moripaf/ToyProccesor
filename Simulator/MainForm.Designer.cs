@@ -41,21 +41,23 @@
             this.PC = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.MemBlockBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.monitorBtn = new System.Windows.Forms.Button();
-            this.lineBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.MemGridView = new System.Windows.Forms.DataGridView();
+            this.lineBtn = new System.Windows.Forms.Button();
+            this.MemBlockBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.zBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cBox = new System.Windows.Forms.TextBox();
             this.importBtn = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.MemGridView = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
+            this.orgBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -119,10 +121,10 @@
             // 
             // runBtn
             // 
-            this.runBtn.Location = new System.Drawing.Point(492, 4);
+            this.runBtn.Location = new System.Drawing.Point(491, 4);
             this.runBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.runBtn.Name = "runBtn";
-            this.runBtn.Size = new System.Drawing.Size(91, 36);
+            this.runBtn.Size = new System.Drawing.Size(91, 26);
             this.runBtn.TabIndex = 5;
             this.runBtn.Text = "Run All";
             this.runBtn.UseVisualStyleBackColor = true;
@@ -229,63 +231,49 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.63129F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.monitorBtn, 4, 2);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tableLayoutPanel1.Controls.Add(this.orgBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.button2, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.runBtn, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.lineBtn, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.MemBlockBox, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.zBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.cBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.importBtn, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.button1, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.MemBlockBox, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.monitorBtn, 4, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.09091F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.90909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(586, 190);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
-            // MemBlockBox
+            // label9
             // 
-            this.MemBlockBox.Location = new System.Drawing.Point(334, 92);
-            this.MemBlockBox.Name = "MemBlockBox";
-            this.MemBlockBox.Size = new System.Drawing.Size(146, 28);
-            this.MemBlockBox.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label5.Location = new System.Drawing.Point(182, 89);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 22);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Memory Block :";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(182, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 29);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Actions :";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label9.Location = new System.Drawing.Point(3, 111);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 66);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Show Memory Type :";
             // 
             // monitorBtn
             // 
-            this.monitorBtn.Location = new System.Drawing.Point(492, 93);
+            this.monitorBtn.Location = new System.Drawing.Point(491, 115);
             this.monitorBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.monitorBtn.Name = "monitorBtn";
             this.monitorBtn.Size = new System.Drawing.Size(91, 37);
@@ -294,27 +282,125 @@
             this.monitorBtn.UseVisualStyleBackColor = true;
             this.monitorBtn.Click += new System.EventHandler(this.monitorBtn_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(491, 38);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(91, 27);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Jump";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // lineBtn
             // 
-            this.lineBtn.Location = new System.Drawing.Point(334, 4);
+            this.lineBtn.Location = new System.Drawing.Point(333, 4);
             this.lineBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lineBtn.Name = "lineBtn";
-            this.lineBtn.Size = new System.Drawing.Size(146, 36);
+            this.lineBtn.Size = new System.Drawing.Size(146, 26);
             this.lineBtn.TabIndex = 7;
             this.lineBtn.Text = "Run Single Line";
             this.lineBtn.UseVisualStyleBackColor = true;
             this.lineBtn.Click += new System.EventHandler(this.lineBtn_Click);
             // 
-            // button2
+            // MemBlockBox
             // 
-            this.button2.Location = new System.Drawing.Point(492, 48);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 37);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Jump";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.MemBlockBox.Location = new System.Drawing.Point(333, 114);
+            this.MemBlockBox.Name = "MemBlockBox";
+            this.MemBlockBox.Size = new System.Drawing.Size(146, 28);
+            this.MemBlockBox.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label6.Location = new System.Drawing.Point(181, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 29);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Actions :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label5.Location = new System.Drawing.Point(181, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 22);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Memory Block :";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 22);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Z Flag :";
+            // 
+            // zBox
+            // 
+            this.zBox.Location = new System.Drawing.Point(85, 3);
+            this.zBox.Name = "zBox";
+            this.zBox.ReadOnly = true;
+            this.zBox.Size = new System.Drawing.Size(53, 28);
+            this.zBox.TabIndex = 12;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label8.Location = new System.Drawing.Point(3, 34);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 22);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "C Flag :";
+            // 
+            // cBox
+            // 
+            this.cBox.Location = new System.Drawing.Point(85, 37);
+            this.cBox.Name = "cBox";
+            this.cBox.ReadOnly = true;
+            this.cBox.Size = new System.Drawing.Size(53, 28);
+            this.cBox.TabIndex = 13;
+            // 
+            // importBtn
+            // 
+            this.importBtn.Location = new System.Drawing.Point(181, 38);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(103, 27);
+            this.importBtn.TabIndex = 14;
+            this.importBtn.Text = "Import File";
+            this.importBtn.UseVisualStyleBackColor = true;
+            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "HEX",
+            "BINARY",
+            "DECIMAL"});
+            this.comboBox1.Location = new System.Drawing.Point(85, 114);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(90, 30);
+            this.comboBox1.TabIndex = 16;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(333, 38);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 27);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Save to File";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MemGridView
             // 
@@ -327,86 +413,23 @@
             this.MemGridView.Size = new System.Drawing.Size(883, 499);
             this.MemGridView.TabIndex = 0;
             // 
-            // label7
+            // label10
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 22);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Z Flag :";
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label10.Location = new System.Drawing.Point(3, 69);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 22);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "ORG :";
             // 
-            // label8
+            // orgBox
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label8.Location = new System.Drawing.Point(3, 44);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 22);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "C Flag :";
-            // 
-            // zBox
-            // 
-            this.zBox.Location = new System.Drawing.Point(86, 3);
-            this.zBox.Name = "zBox";
-            this.zBox.ReadOnly = true;
-            this.zBox.Size = new System.Drawing.Size(44, 28);
-            this.zBox.TabIndex = 12;
-            // 
-            // cBox
-            // 
-            this.cBox.Location = new System.Drawing.Point(86, 47);
-            this.cBox.Name = "cBox";
-            this.cBox.ReadOnly = true;
-            this.cBox.Size = new System.Drawing.Size(44, 28);
-            this.cBox.TabIndex = 13;
-            // 
-            // importBtn
-            // 
-            this.importBtn.Location = new System.Drawing.Point(182, 48);
-            this.importBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.importBtn.Name = "importBtn";
-            this.importBtn.Size = new System.Drawing.Size(103, 37);
-            this.importBtn.TabIndex = 14;
-            this.importBtn.Text = "Import File";
-            this.importBtn.UseVisualStyleBackColor = true;
-            this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label9.Location = new System.Drawing.Point(3, 89);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(73, 66);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Show Memory Type :";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "HEX",
-            "BINARY",
-            "DECIMAL"});
-            this.comboBox1.Location = new System.Drawing.Point(86, 92);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(90, 30);
-            this.comboBox1.TabIndex = 16;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(334, 48);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 37);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Save to File";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.orgBox.Location = new System.Drawing.Point(85, 72);
+            this.orgBox.Name = "orgBox";
+            this.orgBox.ReadOnly = true;
+            this.orgBox.Size = new System.Drawing.Size(53, 28);
+            this.orgBox.TabIndex = 19;
             // 
             // MainForm
             // 
@@ -471,6 +494,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox orgBox;
+        private System.Windows.Forms.Label label10;
     }
 }
 
