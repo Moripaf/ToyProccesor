@@ -37,17 +37,22 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.MemBlockBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.PC = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.MemBlockBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.monitorBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lineBtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.MemGridView = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.zBox = new System.Windows.Forms.TextBox();
+            this.cBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,9 +65,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,12 +116,12 @@
             // 
             // runBtn
             // 
-            this.runBtn.Location = new System.Drawing.Point(3, 32);
+            this.runBtn.Location = new System.Drawing.Point(492, 4);
             this.runBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.runBtn.Name = "runBtn";
-            this.runBtn.Size = new System.Drawing.Size(106, 37);
+            this.runBtn.Size = new System.Drawing.Size(91, 36);
             this.runBtn.TabIndex = 5;
-            this.runBtn.Text = "Run";
+            this.runBtn.Text = "Run All";
             this.runBtn.UseVisualStyleBackColor = true;
             this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
             // 
@@ -174,10 +177,8 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.MemBlockBox);
             this.splitContainer3.Panel1.Controls.Add(this.label4);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
-            this.splitContainer3.Panel1.Controls.Add(this.label5);
             this.splitContainer3.Panel1.Controls.Add(this.regT);
             this.splitContainer3.Panel1.Controls.Add(this.regA);
             this.splitContainer3.Panel1.Controls.Add(this.PC);
@@ -186,17 +187,10 @@
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
+            this.splitContainer3.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer3.Size = new System.Drawing.Size(900, 190);
             this.splitContainer3.SplitterDistance = 310;
             this.splitContainer3.TabIndex = 8;
-            // 
-            // MemBlockBox
-            // 
-            this.MemBlockBox.Location = new System.Drawing.Point(171, 164);
-            this.MemBlockBox.Name = "MemBlockBox";
-            this.MemBlockBox.Size = new System.Drawing.Size(128, 28);
-            this.MemBlockBox.TabIndex = 9;
             // 
             // label4
             // 
@@ -207,16 +201,6 @@
             this.label4.Size = new System.Drawing.Size(128, 29);
             this.label4.TabIndex = 8;
             this.label4.Text = "Registers :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label5.Location = new System.Drawing.Point(13, 164);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Memory Block :";
             // 
             // PC
             // 
@@ -235,66 +219,106 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Program Counter :";
             // 
-            // splitContainer4
+            // tableLayoutPanel1
             // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer4.IsSplitterFixed = true;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.splitContainer4.Name = "splitContainer4";
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.86592F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.13408F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tableLayoutPanel1.Controls.Add(this.monitorBtn, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.runBtn, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lineBtn, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.MemBlockBox, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.zBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cBox, 1, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.90909F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(586, 190);
+            this.tableLayoutPanel1.TabIndex = 9;
             // 
-            // splitContainer4.Panel1
+            // MemBlockBox
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.label6);
-            this.splitContainer4.Panel1.Controls.Add(this.runBtn);
-            this.splitContainer4.Panel1.Controls.Add(this.button2);
-            this.splitContainer4.Panel1.Controls.Add(this.monitorBtn);
-            this.splitContainer4.Panel1.Controls.Add(this.button1);
-            this.splitContainer4.Size = new System.Drawing.Size(586, 190);
-            this.splitContainer4.SplitterDistance = 110;
-            this.splitContainer4.TabIndex = 8;
+            this.MemBlockBox.Location = new System.Drawing.Point(334, 92);
+            this.MemBlockBox.Name = "MemBlockBox";
+            this.MemBlockBox.Size = new System.Drawing.Size(146, 28);
+            this.MemBlockBox.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label5.Location = new System.Drawing.Point(182, 89);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 22);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Memory Block :";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(3, 9);
+            this.label6.Location = new System.Drawing.Point(182, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 29);
             this.label6.TabIndex = 8;
             this.label6.Text = "Actions :";
             // 
-            // button2
+            // button3
             // 
-            this.button2.Location = new System.Drawing.Point(3, 112);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 37);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Save to file";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(334, 48);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(146, 37);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Run BreakPoint";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // monitorBtn
             // 
-            this.monitorBtn.Location = new System.Drawing.Point(3, 152);
+            this.monitorBtn.Location = new System.Drawing.Point(492, 93);
             this.monitorBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.monitorBtn.Name = "monitorBtn";
-            this.monitorBtn.Size = new System.Drawing.Size(106, 37);
+            this.monitorBtn.Size = new System.Drawing.Size(91, 37);
             this.monitorBtn.TabIndex = 2;
             this.monitorBtn.Text = "Monitor";
             this.monitorBtn.UseVisualStyleBackColor = true;
-            this.monitorBtn.Click += new System.EventHandler(this.button3_Click);
+            this.monitorBtn.Click += new System.EventHandler(this.monitorBtn_Click);
             // 
-            // button1
+            // lineBtn
             // 
-            this.button1.Location = new System.Drawing.Point(3, 72);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 37);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Import file";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lineBtn.Location = new System.Drawing.Point(334, 4);
+            this.lineBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lineBtn.Name = "lineBtn";
+            this.lineBtn.Size = new System.Drawing.Size(146, 36);
+            this.lineBtn.TabIndex = 7;
+            this.lineBtn.Text = "Run Single Line";
+            this.lineBtn.UseVisualStyleBackColor = true;
+            this.lineBtn.Click += new System.EventHandler(this.lineBtn_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(492, 48);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(91, 37);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Jump";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MemGridView
             // 
@@ -306,6 +330,42 @@
             this.MemGridView.RowTemplate.Height = 28;
             this.MemGridView.Size = new System.Drawing.Size(883, 499);
             this.MemGridView.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label7.Location = new System.Drawing.Point(3, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 22);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Z Flag :";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label8.Location = new System.Drawing.Point(3, 89);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 22);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "C Flag :";
+            // 
+            // zBox
+            // 
+            this.zBox.Location = new System.Drawing.Point(103, 47);
+            this.zBox.Name = "zBox";
+            this.zBox.ReadOnly = true;
+            this.zBox.Size = new System.Drawing.Size(44, 28);
+            this.zBox.TabIndex = 12;
+            // 
+            // cBox
+            // 
+            this.cBox.Location = new System.Drawing.Point(103, 92);
+            this.cBox.Name = "cBox";
+            this.cBox.ReadOnly = true;
+            this.cBox.Size = new System.Drawing.Size(44, 28);
+            this.cBox.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -333,10 +393,8 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -357,13 +415,18 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button monitorBtn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView MemGridView;
         private System.Windows.Forms.TextBox MemBlockBox;
+        private System.Windows.Forms.Button lineBtn;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox zBox;
+        private System.Windows.Forms.TextBox cBox;
     }
 }
 

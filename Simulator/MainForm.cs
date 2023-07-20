@@ -3,13 +3,14 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ToySimulator
 {
     public partial class MainForm : Form
     {
-        int c = 0, z = 0, pc;
-
+        int c = 0, z = 0;
+        public int pc {  get; set; }
         const int blockSize = 512;// 32 lins
         const int lineSize = 16; // 8 cells
         const int cellSize = 2; // 2 bytes
@@ -22,12 +23,11 @@ namespace ToySimulator
         public MainForm()
         {
             InitializeComponent();
-            for (short i = 0; i < 32; i++)
+            blockAddr = 0;
+            for(int i = 0; i < 32; i++)
             {
-                blockArr[i] = new short[9];
-                blockArr[i][0] = i;
-                for(int j = 1; j < 9; j++)
-                    blockArr[i][j] = 0;
+                blockArr[i] = new short[9];     
+                
             }
             try
             {
@@ -40,12 +40,12 @@ namespace ToySimulator
                 file = new FileInfo(@"memory.txt");
                 fs = new FileStream(file.FullName, FileMode.Open, FileAccess.ReadWrite);
             }
-
-
+            regA.Text = "0";
+            regT.Text = "0";
             MemLoad();
 
         }
-        public void updateMemView()
+        public void UpdateMemView()
         {
             var data = from arr in blockArr
                        select new
@@ -69,7 +69,7 @@ namespace ToySimulator
                        };
             MemGridView.DataSource = data.ToList();
         }
-        public int MemRead(int addr)
+        public short MemRead(int addr)
         {
             int actualRead=0;
             byte[] buffer = new byte[cellSize];
@@ -81,25 +81,27 @@ namespace ToySimulator
 
             return BitConverter.ToInt16(buffer, 0);
         }
-        public void MemWrite(int addr, Int16 data)
+        private void MemWrite(int addr, short data)
         {
             int blockstart = blockAddr * blockSize;
             int adrInBlock = addr - blockstart;
-            if ((addr <= blockstart) && (addr < blockstart + blockSize))
+            if ((addr >= blockstart) && (addr < blockstart + blockSize))
             {
-                blockArr[adrInBlock / 8][adrInBlock % 8] = data;
-                updateMemView();
+                blockArr[adrInBlock / 8][(adrInBlock % 8)+1] = data;
+                UpdateMemView();
             }
+           
             byte[] buffer = BitConverter.GetBytes(data);
             fs.Position = addr * cellSize;
-            fs.Write(buffer, 0, cellSize);  
+            fs.Write(buffer, 0, cellSize);
+           
         }
         public void MemLoad()
         {
             byte[] buffer = new byte[blockSize];
             int actualRead = 0;
             int addr = blockAddr * blockSize;
-            fs.Position = blockAddr * blockSize;
+            fs.Position = addr;
             do
             {
                 actualRead += fs.Read(buffer, actualRead, blockSize - actualRead);
@@ -113,36 +115,9 @@ namespace ToySimulator
                     blockArr[i][j+1] = BitConverter.ToInt16(buffer, startindex);
                 }
             }
-            updateMemView();
+            UpdateMemView();
         }
-        private void runBtn_Click(object sender, EventArgs e)
-        {
-            pc = 0;
-            while (pc < codeBox.Lines.Length)
-            {
-                ParseLine(codeBox.Lines[pc]);
-                pc++;
-            }
-
-        }
-        public void ParseLine(string line)
-        {
-            string cmd = "", addr="";
-            int i;
-            for (i = 0; line[i] != ' '; i++)
-                cmd += line[i];
-            for(i++;i<line.Length;i++)
-                addr += line[i];
-            Execute(cmd, addr);
-
-        }
-
-        private void MemoryView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void monitorBtn_Click(object sender, EventArgs e)
         {
             short tmp = short.Parse(MemBlockBox.Text);
             if (tmp > 128 || tmp < 0)
@@ -150,13 +125,48 @@ namespace ToySimulator
                 MemBlockBox.Text = "Enter number between 0-16!";
                 return;
             }
-                
+
             blockAddr = tmp;
             MemLoad();
         }
+        private void runBtn_Click(object sender, EventArgs e)
+        {
+            pc = 0;
+            while (pc < codeBox.Lines.Length)
+            {
+                pc++;
+                ParseLine(codeBox.Lines[pc-1]);
+               
+            }
+            PC.Text = pc.ToString();
+        }
+        private void lineBtn_Click(object sender, EventArgs e)
+        {
+            if(pc==codeBox.Lines.Length)
+            {
+                return;
+            }
+            pc++;
+            ParseLine(codeBox.Lines[pc-1]);
+            PC.Text = pc.ToString();
+        }
+        public void ParseLine(string line)
+        {
+            string cmd = "", addr="";
+            int i;
+            for (i = 0; (i < line.Length) && (line[i] != ' '); i++)
+                cmd += line[i];
+            for(i++;i<line.Length;i++)
+                addr += line[i];
+            Execute(cmd, addr);
+
+        }
+
+        
 
         public void Execute(string cmd,string addr)
         {
+            addr = (addr != "") ? addr : "0";
             short src = short.Parse(addr);
             short a = short.Parse(regA.Text);
             short t = short.Parse(regT.Text);
@@ -165,21 +175,23 @@ namespace ToySimulator
                 case "JMP":
                 case "jmp":
                     pc = src;
+                    PC.Text = pc.ToString();
                     break;
                 case "ADC":
                 case "adc":
-                    regA.Text = (a + src).ToString();
-                    if (a + src > 32768) c = 1;
-
+                    regA.Text = (a + MemRead(src)).ToString();
+                    if (a + src > 32768) { c = 1;cBox.Text = "1"; }
+                    if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "XOR":
                 case "xor":
-                    regA.Text = (a ^ src).ToString();
+                    regA.Text = (a ^ MemRead(src)).ToString();
+                    if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "SBC":
                 case "sbc":
-                    regA.Text = (a - src - c).ToString();
-
+                    regA.Text = (a - MemRead(src) - c).ToString();
+                    if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "ROR":
                 case "ror":
@@ -191,32 +203,36 @@ namespace ToySimulator
                     break;
                 case "OR":
                 case "or":
-                    regA.Text = (a | src).ToString();
+                    regA.Text = (a | MemRead(src)).ToString();
+                    if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "AND":
                 case "and":
-                    regA.Text = (a & src).ToString();
+                    regA.Text = (a & MemRead(src)).ToString();
+                    if (regA.Text == "0") { z = 0; zBox.Text = "1"; }
                     break;
                 case "LDC":
                 case "ldc":
                     regA.Text = MemRead(src).ToString();
                     c = 0;
+                    cBox.Text = "0";
                     break;
                 case "BCC":
                 case "bcc":
-                    if (c == 0) pc = MemRead(src);
-                    break;
+                    if (c == 0) { pc = MemRead(src); PC.Text = pc.ToString(); }
+                        break;
                 case "BNE":
                 case "bne":
-                    if (z == 1) pc = MemRead(src);
-                    break;
+                    if (z == 1) {pc = MemRead(src); PC.Text = pc.ToString();
+            }
+            break;
                 case "LDI":
                 case "ldi":
                     regA.Text = MemRead(a).ToString();
                     break;
                 case "STT":
                 case "stt":
-                    MemWrite(a, t);
+                    MemWrite(MemRead(a), t);
                     break;
                 case "LDA":
                 case "lda":
@@ -227,7 +243,14 @@ namespace ToySimulator
                     MemWrite(src, a);
                     break;
             }
+            
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            pc = int.Parse(PC.Text);
+        }
+
         public int RotateRight(int value, int count)
         {
             return (value >> count) | (value << (16 - count));
