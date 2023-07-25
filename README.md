@@ -25,6 +25,7 @@ you need the latest version of the .net framework to run this app
 | 	  STT     | Store T indirect                | 	[A]:=T                  |
 | 	LDA src   | Load A, don't clear carry       | 	A:=[src]                |
 | 	STA dest  | Store A                         | 	[dest]:=A               |
+
 *[src] = the value of the memory cell at the 'src' address
 ## Directives
 ``` 
