@@ -44,7 +44,9 @@ example :
 .DATA A 20 // A -> 25 org -> 26 cell #25 in memory is set to 20
 .DATA B // B->26 org->27 but no change in memory  
 ```
+
 ## Labels
+
 Every Line that is not part of the ISA or a directive is treated as a label
 you can use labels as jumping points via the JMP command :
 ```
