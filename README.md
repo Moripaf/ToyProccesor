@@ -5,7 +5,7 @@ Toy Processor is a simulator/assembler for the Toy/2 ISA
 ## Installation
 
 this app is made using .net framework 6 so
-you need the latest version of the .net framework to run this app
+you need at least that version of the .net framework to run this app
 
 ## the Toy/2 Insttuction Set Architecture
 | Mnemonic    |            Description          |         Function          |
